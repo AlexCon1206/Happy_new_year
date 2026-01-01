@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Año Nuevo 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: firework 2s ease-out infinite;
+        }
+
+        @keyframes firework {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 50px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .year {
+            font-size: 80px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .message {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .wishes {
+            font-size: 18px;
+            color: #667eea;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="year">2025</div>
+        <h1>¡Feliz Año Nuevo!</h1>
+        <p class="message">
+            Que este nuevo año traiga a tu vida momentos llenos de alegría, 
+            paz y amor. Que cada día sea una oportunidad para crecer, 
+            soñar y alcanzar todo aquello que te propongas.
+        </p>
+        <p class="wishes">
+            <span class="sparkle">✨</span> 
+            Que el 2025 esté lleno de bendiciones y éxitos 
+            <span class="sparkle">✨</span>
+        </p>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="El Año Viejo.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        
+        // Intentar reproducir automáticamente
+        document.addEventListener('DOMContentLoaded', () => {
+            audio.play().catch(() => {
+                // Si falla la reproducción automática, se reproduce al hacer clic
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+
+        function createFirework() {
+            const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#f7b731', '#ff6348'];
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * window.innerWidth + 'px';
+            firework.style.top = Math.random() * window.innerHeight + 'px';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.setProperty('--x', (Math.random() - 0.5) * 300 + 'px');
+            firework.style.setProperty('--y', (Math.random() - 0.5) * 300 + 'px');
+            
+            document.body.appendChild(firework);
+            
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+
+        setInterval(createFirework, 100);
+    </script>
+    <footer style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 11; color: rgba(255,255,255,0.95); font-size: 14px; background: rgba(0,0,0,0.12); padding: 10px 16px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+        <p style="margin: 0;">
+            Son los deseos sinceros de <strong>el kuaker de clan</strong> <span class="sparkle">😉</span>. ¡Feliz 2026!
+        </p>
+    </footer>
+</body>
+</html>
